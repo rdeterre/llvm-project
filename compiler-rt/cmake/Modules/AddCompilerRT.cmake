@@ -9,6 +9,7 @@ function(set_target_output_directories target output_dir)
   # set 'RUNTIME_OUTPUT_DIRECTORY_${CONF}':
   # RUNTIME_OUTPUT_DIRECTORY_DEBUG, RUNTIME_OUTPUT_DIRECTORY_RELEASE, ...
   if(CMAKE_CONFIGURATION_TYPES)
+    string(REGEX REPLACE "\\$\\(Configuration\\)" "$<CONFIG>" output_dir "${output_dir}")
     foreach(build_mode ${CMAKE_CONFIGURATION_TYPES})
       string(TOUPPER "${build_mode}" CONFIG_SUFFIX)
       set_target_properties("${target}" PROPERTIES
